@@ -1,17 +1,17 @@
-import 'package:flutter_woo_commerce_getx_learn/pages/system/login/index.dart';
-import 'package:flutter_woo_commerce_getx_learn/pages/system/splash/index.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../pages/system/main/index.dart';
+import 'index.dart';
+
 class RouterPages {
+  static final RouteObserver<Route> observer = RouteObservers();
+  static List<String> history = [];
+
   static List<GetPage> list = [
     GetPage(
-      name: "/",
-      page: () => const LoginPage(),
-      binding: LoginBinding(),
-    ),
-    GetPage(
-      name: "/splash",
-      page: () => const SplashPage(),
-    ),
+      name: RouteNames.main,
+      page: () => MainPage(),
+    )
   ];
 }
