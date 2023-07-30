@@ -23,6 +23,12 @@ class LoginPage extends GetView<LoginController> {
                 },
                 child: Text("add"),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  Get.toNamed("/splash");
+                },
+                child: Text("调到splash"),
+              ),
               _buildView(),
             ],
           ),
