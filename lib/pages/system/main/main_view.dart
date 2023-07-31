@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:get/get.dart';
 
 import 'main_controller.dart';
@@ -39,7 +40,7 @@ class _MainViewGetX extends GetView<MainController> {
       id: "main",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: const Text("main")),
+          appBar: AppBar(title: Text(ConfigService.to.version)),
           body: SafeArea(
             child: _buildView(),
           ),
