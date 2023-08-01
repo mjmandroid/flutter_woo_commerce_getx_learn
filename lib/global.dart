@@ -8,10 +8,10 @@ class Global {
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    // Get.put<ConfigService>(ConfigService());
+    Get.put<ConfigService>(ConfigService());
     await Future.wait([
-      Get.putAsync(() async => ConfigService().init()),
       Store().init(),
+      Get.putAsync(() async => ConfigService().init()),
     ]).whenComplete(() => {});
   }
 }
