@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/services/config.dart';
 import 'package:flutter_woo_commerce_getx_learn/global.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +25,10 @@ class MyApp extends StatelessWidget {
       getPages: RouterPages.list,
       initialRoute: RouteNames.main,
       navigatorObservers: [RouterPages.observer],
+      translations: Translation(),
+      localizationsDelegates: Translation.localizationDelegates,
+      fallbackLocale: Translation.fallbackLocale,
+      locale: ConfigService.to.locale,
     );
   }
 }

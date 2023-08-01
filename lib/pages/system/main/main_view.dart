@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:get/get.dart';
 
@@ -28,8 +29,18 @@ class _MainViewGetX extends GetView<MainController> {
   const _MainViewGetX({Key? key}) : super(key: key);
 
   Widget _buildView() {
-    return const Center(
-      child: Text("MainPage"),
+    return Column(
+      children: [
+        Center(
+          child: Text("MainPage${ConfigService.to.locale.toLanguageTag()}"),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            ConfigService.to.onLocaleUpdate(Translation.supportedLocales[0]);
+          },
+          child: Text("切换英文"),
+        )
+      ],
     );
   }
 
@@ -40,7 +51,9 @@ class _MainViewGetX extends GetView<MainController> {
       id: "main",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: Text(ConfigService.to.version)),
+          appBar: AppBar(
+              title: Text(
+                  ConfigService.to.version + "${LocaleKeys.stylesTitle.tr}")),
           body: SafeArea(
             child: _buildView(),
           ),
