@@ -51,11 +51,7 @@ class _MainViewGetX extends GetView<MainController> {
       id: "main",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(
-              title: Text(ConfigService.to.version +
-                  "${LocaleKeys.commonMessageSuccess.trParams({
-                        'method': '哈哈哈'
-                      })}")),
+          appBar: AppBar(title: Text(ConfigService.to.version)),
           body: SafeArea(
             child: _buildView(),
           ),

@@ -16,12 +16,17 @@ class ConfigService extends GetxService {
 
   Future<ConfigService> init() async {
     await getPlatform();
-    initLocale();
     return this;
   }
 
   Future<void> getPlatform() async {
     _platform = await PackageInfo.fromPlatform();
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
   }
 
   void initLocale() {
