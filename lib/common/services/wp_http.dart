@@ -18,7 +18,7 @@ class WPHttpService extends GetxService {
         contentType: 'application/json; charset=utf-8',
         responseType: ResponseType.json);
     _dio = Dio(options);
-    // _dio.interceptors.add(element);
+    _dio.interceptors.add(RequestInterceptors());
   }
 
   Future<Response> get(
