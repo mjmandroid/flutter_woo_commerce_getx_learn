@@ -44,6 +44,7 @@ dependencies:
   dio: ^5.3.1
   dio_cookie_manager: ^3.1.0
   cookie_jar: ^4.0.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,7 +55,15 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-
+  flutter_launcher_icons_maker: ^0.10.2
+  # app 图标
+flutter_icons:
+  android: true
+  ios: true
+  #    image_path: "assets/icons/launcher_ios.png"
+  image_path_ios: "assets/icons/launcher_ios.png"
+  image_path_android: "assets/icons/launcher_android.png"
+  adaptive_icon_background: "#ffffff"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
