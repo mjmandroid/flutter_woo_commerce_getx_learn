@@ -9,10 +9,8 @@ class Global {
     WidgetsFlutterBinding.ensureInitialized();
 
     await Future.wait([
-      Get.putAsync(() async => ConfigService().init()),
       Store().init(),
+      Get.putAsync(() async => ConfigService().init()),
     ]).whenComplete(() => {});
-
-    ConfigService.to.initLocale();
   }
 }

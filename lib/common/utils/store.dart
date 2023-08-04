@@ -27,6 +27,10 @@ class Store {
     return _preferences.getBool(key) ?? false;
   }
 
+  Future<bool> setBool(String key, bool value) async {
+    return await _preferences.setBool(key, value);
+  }
+
   List<String> getList(String key) {
     return _preferences.getStringList(key) ?? [];
   }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,9 @@ class ConfigService extends GetxService {
 
   PackageInfo? _platform;
   String get version => _platform?.version ?? '-';
+
+  final RxBool _isDarkModel = Get.isDarkMode.obs;
+  bool get isDarkModel => _isDarkModel.value;
 
   Locale locale = PlatformDispatcher.instance.locale;
 
@@ -25,8 +29,21 @@ class ConfigService extends GetxService {
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
+    initLocale();
+    initTheme();
+  }
+
+  Future<void> switchThemeModel() async {
+    _isDarkModel.value = !_isDarkModel.value;
+    Get.changeTheme(isDarkModel ? AppTheme.darkTheme : AppTheme.lightTheme);
+    await Store().setBool(Constants.storageThemeCode, _isDarkModel.value);
+  }
+
+  void initTheme() async {
+    var dark = Store().getBool(Constants.storageThemeCode);
+    _isDarkModel.value = dark;
+    Get.changeTheme(isDarkModel ? AppTheme.darkTheme : AppTheme.lightTheme);
   }
 
   void initLocale() {

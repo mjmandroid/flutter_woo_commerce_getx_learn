@@ -39,6 +39,12 @@ class _MainViewGetX extends GetView<MainController> {
             ConfigService.to.onLocaleUpdate(Translation.supportedLocales[0]);
           },
           child: Text("切换英文"),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            ConfigService.to.switchThemeModel();
+          },
+          child: Text("切换主题"),
         )
       ],
     );

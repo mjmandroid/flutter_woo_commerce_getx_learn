@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/config.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/global.dart';
 import 'package:get/get.dart';
 
@@ -19,9 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ConfigService.to.isDarkModel
+          ? AppTheme.darkTheme
+          : AppTheme.lightTheme,
       getPages: RouterPages.list,
       initialRoute: RouteNames.main,
       navigatorObservers: [RouterPages.observer],
