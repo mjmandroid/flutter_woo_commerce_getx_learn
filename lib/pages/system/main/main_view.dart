@@ -32,7 +32,13 @@ class _MainViewGetX extends GetView<MainController> {
     return Column(
       children: [
         Center(
-          child: Text("MainPage${ConfigService.to.locale.toLanguageTag()}"),
+          child: Text(
+            "MainPage${ConfigService.to.locale.toLanguageTag()}",
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w100,
+            ),
+          ),
         ),
         ElevatedButton(
           onPressed: () {
