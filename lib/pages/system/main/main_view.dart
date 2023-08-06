@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/widgets/icon.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:get/get.dart';
 
@@ -68,6 +70,7 @@ class _MainViewGetX extends GetView<MainController> {
         ListTile(
           title: TextWidget.body2("body2"),
         ),
+        IconWidget.svg(AssetsSvgs.cBagSvg),
       ],
     );
   }
