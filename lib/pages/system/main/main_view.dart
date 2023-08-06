@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:get/get.dart';
 
 import 'main_controller.dart';
@@ -51,7 +52,22 @@ class _MainViewGetX extends GetView<MainController> {
             ConfigService.to.switchThemeModel();
           },
           child: Text("切换主题"),
-        )
+        ),
+        ListTile(
+          title: TextWidget.title1("title1"),
+        ),
+        ListTile(
+          title: TextWidget.title2("title2"),
+        ),
+        ListTile(
+          title: TextWidget.title3("title3"),
+        ),
+        ListTile(
+          title: TextWidget.body1("body1"),
+        ),
+        ListTile(
+          title: TextWidget.body2("body2"),
+        ),
       ],
     );
   }
