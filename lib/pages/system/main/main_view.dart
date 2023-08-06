@@ -77,6 +77,13 @@ class _MainViewGetX extends GetView<MainController> {
           width: 20,
           height: 20,
         ),
+        SizedBox(
+          width: 200,
+          height: 200,
+          child: InputWidget.search(
+            maxLines: null,
+          ),
+        )
       ],
     );
   }
