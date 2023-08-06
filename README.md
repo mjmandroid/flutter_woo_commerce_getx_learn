@@ -14,3 +14,18 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+生成接口文档
+1.创建
+dartdoc_options.yaml
+
+dartdoc:
+nodoc: ["lib/pages/**/*.dart"]
+
+2执行命令，安装 dartdoc
+
+dart pub global activate dartdoc
+3执行命令，生成文档到 doc/api 目录
+
+dart pub global run dartdoc
