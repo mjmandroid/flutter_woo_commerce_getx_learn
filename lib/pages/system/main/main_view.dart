@@ -71,6 +71,12 @@ class _MainViewGetX extends GetView<MainController> {
           title: TextWidget.body2("body2"),
         ),
         IconWidget.svg(AssetsSvgs.cBagSvg),
+        ButtonWidget.textRoundFilled(
+          "",
+          borderRadius: 10,
+          width: 20,
+          height: 20,
+        ),
       ],
     );
   }
