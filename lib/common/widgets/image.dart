@@ -131,7 +131,7 @@ class ImageWidget extends StatelessWidget {
         break;
     }
 
-    return const Placeholder();
+    return image ?? const Placeholder();
   }
 
   Widget _buildLoadState(BuildContext context, ExtendedImageState state) {

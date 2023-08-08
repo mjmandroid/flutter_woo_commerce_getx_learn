@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/config.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
@@ -18,18 +19,31 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ConfigService.to.isDarkModel
-          ? AppTheme.darkTheme
-          : AppTheme.lightTheme,
-      getPages: RouterPages.list,
-      initialRoute: RouteNames.main,
-      navigatorObservers: [RouterPages.observer],
-      translations: Translation(),
-      localizationsDelegates: Translation.localizationDelegates,
-      fallbackLocale: Translation.fallbackLocale,
-      locale: ConfigService.to.locale,
-    );
+    return ScreenUtilInit(
+        designSize: const Size(414, 896),
+        splitScreenMode: false, // 支持分屏尺寸
+        minTextAdapt: false, //是否根据宽度/高度中的最小值适配文字
+        builder: (context, child) {
+          return GetMaterialApp(
+            title: 'Flutter Demo',
+            theme: ConfigService.to.isDarkModel
+                ? AppTheme.darkTheme
+                : AppTheme.lightTheme,
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: child!,
+              );
+            },
+            getPages: RouterPages.list,
+            initialRoute: RouteNames.splash,
+            navigatorObservers: [RouterPages.observer],
+            translations: Translation(),
+            localizationsDelegates: Translation.localizationDelegates,
+            fallbackLocale: Translation.fallbackLocale,
+            locale: ConfigService.to.locale,
+            debugShowCheckedModeBanner: false,
+          );
+        });
   }
 }

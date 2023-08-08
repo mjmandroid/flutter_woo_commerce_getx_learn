@@ -1,3 +1,4 @@
 class RouteNames {
-  static const main = '/';
+  static const splash = '/';
+  static const main = '/main';
 }
