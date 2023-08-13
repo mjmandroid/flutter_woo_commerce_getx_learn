@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:get/get.dart';
 
 class RegisterPinController extends GetxController {
@@ -13,7 +14,9 @@ class RegisterPinController extends GetxController {
   }
 
   // 按钮提交
-  void onBtnSubmit() {}
+  void onBtnSubmit() {
+    Loading.show("加载中");
+  }
 
   // 按钮返回
   void onBtnBackup() {

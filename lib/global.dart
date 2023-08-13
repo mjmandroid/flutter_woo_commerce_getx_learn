@@ -12,5 +12,7 @@ class Global {
       Store().init(),
       Get.putAsync(() async => ConfigService().init()),
     ]).whenComplete(() => {});
+
+    Loading();
   }
 }
