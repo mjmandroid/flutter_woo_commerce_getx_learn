@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_list.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:get/get.dart';
 
 import 'index.dart';
@@ -18,6 +20,7 @@ class WelcomePage extends GetView<WelcomeController> {
             ? const SizedBox()
             : WelcomeSliderWidget(
                 items: controller.items!,
+                carouselController: controller.carouselController,
                 onPageChanged: (index) {
                   controller.onPageChanged(index);
                 },
@@ -31,10 +34,26 @@ class WelcomePage extends GetView<WelcomeController> {
       id: 'bar',
       init: controller,
       builder: (controller) {
-        return SliderIndicatorWidget(
-          length: 3,
-          currentIndex: controller.currentIndex,
-        );
+        if (controller.isShowStart) {
+          return ButtonWidget.primary(
+            LocaleKeys.welcomeStart.tr,
+            onTab: controller.onToMain,
+          );
+        }
+        return <Widget>[
+          ButtonWidget.text(
+            LocaleKeys.welcomeSkip.tr,
+            onTab: controller.onToMain,
+          ),
+          SliderIndicatorWidget(
+            length: 3,
+            currentIndex: controller.currentIndex,
+          ),
+          ButtonWidget.text(
+            LocaleKeys.welcomeNext.tr,
+            onTab: controller.onNext,
+          ),
+        ].toRow(mainAxisAlignment: MainAxisAlignment.spaceAround);
       },
     );
   }

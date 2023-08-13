@@ -61,4 +61,11 @@ class ConfigService extends GetxService {
     Get.updateLocale(locale);
     Store().setString(Constants.storageLanguageCode, value.languageCode);
   }
+
+  ///是否首次打开
+  bool get isAlreadyOpen => Store().getBool(Constants.storageAlreadyOpen);
+
+  Future<void> setAlreadyOpen() async {
+    await Store().setBool(Constants.storageAlreadyOpen, true);
+  }
 }
