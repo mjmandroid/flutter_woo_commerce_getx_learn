@@ -16,8 +16,12 @@ class RegisterController extends GetxController {
   // 密码
   TextEditingController passwordController =
       TextEditingController(text: "12345678");
+
+  GlobalKey globalKey = GlobalKey<FormState>();
   // 注册
-  void onSignUp() {}
+  void onSignUp() {
+    if ((globalKey.currentState as FormState).validate()) {}
+  }
 
   // 登录
   void onSignIn() {}

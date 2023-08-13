@@ -4,8 +4,10 @@ import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_list.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_widget.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:get/get.dart';
+import 'package:validatorless/validatorless.dart';
 
 import 'controller.dart';
 
@@ -14,12 +16,20 @@ class RegisterPage extends GetView<RegisterController> {
 
   Widget _buildForm() {
     return Form(
+      key: controller.globalKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: <Widget>[
         TextFormWidget(
           autofocus: true,
           controller: controller.userNameController,
           labelText: LocaleKeys.registerFormName.tr,
+          validator: Validatorless.multiple([
+            Validatorless.required(LocaleKeys.validatorRequired.tr),
+            Validatorless.min(
+                3, LocaleKeys.validatorMin.trParams({"size": "3"})),
+            Validatorless.max(
+                20, LocaleKeys.validatorMax.trParams({"size": "20"})),
+          ]),
         ),
         // email
         TextFormWidget(
@@ -27,6 +37,10 @@ class RegisterPage extends GetView<RegisterController> {
           keyboardType: TextInputType.emailAddress,
           controller: controller.emailController,
           labelText: LocaleKeys.registerFormEmail.tr,
+          validator: Validatorless.multiple([
+            Validatorless.required(LocaleKeys.validatorRequired.tr),
+            Validatorless.email(LocaleKeys.validatorEmail.tr),
+          ]),
         ),
 
         // first name
@@ -34,6 +48,13 @@ class RegisterPage extends GetView<RegisterController> {
           autofocus: true,
           controller: controller.firstNameController,
           labelText: LocaleKeys.registerFormFirstName.tr,
+          validator: Validatorless.multiple([
+            Validatorless.required(LocaleKeys.validatorRequired.tr),
+            Validatorless.min(
+                3, LocaleKeys.validatorMin.trParams({"size": "3"})),
+            Validatorless.max(
+                20, LocaleKeys.validatorMax.trParams({"size": "20"})),
+          ]),
         ),
 
         // last name
@@ -41,6 +62,13 @@ class RegisterPage extends GetView<RegisterController> {
           autofocus: true,
           controller: controller.lastNameController,
           labelText: LocaleKeys.registerFormLastName.tr,
+          validator: Validatorless.multiple([
+            Validatorless.required(LocaleKeys.validatorRequired.tr),
+            Validatorless.min(
+                3, LocaleKeys.validatorMin.trParams({"size": "3"})),
+            Validatorless.max(
+                20, LocaleKeys.validatorMax.trParams({"size": "20"})),
+          ]),
         ),
 
         // password
@@ -48,6 +76,16 @@ class RegisterPage extends GetView<RegisterController> {
           controller: controller.passwordController,
           labelText: LocaleKeys.registerFormPassword.tr,
           isObscure: true,
+          validator: Validatorless.multiple([
+            Validatorless.required(LocaleKeys.validatorRequired.tr),
+            Validators.password(
+              8,
+              18,
+              LocaleKeys.validatorPassword.trParams(
+                {"min": "8", "max": "18"},
+              ),
+            ),
+          ]),
         ).paddingBottom(50),
 
         // 注册按钮
