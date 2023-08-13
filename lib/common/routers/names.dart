@@ -4,4 +4,5 @@ class RouteNames {
   static const welcome = '/welcome';
   static const text_form = '/text_form';
   static const register = '/register';
+  static const systemRegisterPin = '/systemRegisterPin';
 }
