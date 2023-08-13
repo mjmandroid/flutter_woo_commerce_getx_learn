@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/system/splash/view.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/system/welcome/index.dart';
 import 'package:get/get.dart';
 
 import '../../pages/system/main/index.dart';
@@ -17,6 +18,10 @@ class RouterPages {
     GetPage(
       name: RouteNames.main,
       page: () => MainPage(),
+    ),
+    GetPage(
+      name: RouteNames.welcome,
+      page: () => const WelcomePage(),
     )
   ];
 }
