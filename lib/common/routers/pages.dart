@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/styles/styles_index/view.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/system/register/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/system/splash/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/system/welcome/index.dart';
 import 'package:get/get.dart';
@@ -22,6 +24,14 @@ class RouterPages {
     GetPage(
       name: RouteNames.welcome,
       page: () => const WelcomePage(),
-    )
+    ),
+    GetPage(
+      name: RouteNames.text_form,
+      page: () => StylePage(),
+    ),
+    GetPage(
+      name: RouteNames.register,
+      page: () => RegisterPage(),
+    ),
   ];
 }

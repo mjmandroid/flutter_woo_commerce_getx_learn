@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/icon.dart';
@@ -54,6 +55,12 @@ class _MainViewGetX extends GetView<MainController> {
             ConfigService.to.switchThemeModel();
           },
           child: Text("切换主题"),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Get.toNamed(RouteNames.register);
+          },
+          child: Text("form"),
         ),
         ListTile(
           title: TextWidget.title1("title1"),
