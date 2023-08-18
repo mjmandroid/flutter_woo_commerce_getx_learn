@@ -11,6 +11,7 @@ class Global {
     await Future.wait([
       Store().init(),
       Get.putAsync(() async => ConfigService().init()),
+      Get.putAsync(() async => WPHttpService()),
     ]).whenComplete(() => {});
 
     Loading();

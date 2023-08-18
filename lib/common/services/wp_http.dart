@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/models/error_message.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 
@@ -98,6 +103,10 @@ class RequestInterceptors extends Interceptor {
     // 这样请求将被中止并触发异常，上层catchError会被调用。
   }
 
+  Future<void> _errorNoAuthLogout() async {
+    Get.offAllNamed(RouteNames.systemRegisterPin);
+  }
+
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (response.statusCode != 200 && response.statusCode != 201) {
@@ -111,5 +120,37 @@ class RequestInterceptors extends Interceptor {
     } else {
       handler.next(response);
     }
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    final exception = HttpException(err.message ?? "");
+    switch (err.type) {
+      case DioExceptionType.badResponse:
+        {
+          var response = err.response;
+          final model = ErrorMessageModel.fromJson(response?.data);
+          switch (model.statusCode) {
+            case 401:
+              _errorNoAuthLogout();
+              break;
+            case 404:
+              break;
+            case 500:
+              break;
+            case 502:
+              break;
+          }
+          Loading.error(err.message);
+        }
+        break;
+      case DioExceptionType.connectionTimeout:
+        break;
+      case DioExceptionType.cancel:
+        break;
+      case DioExceptionType.unknown:
+        break;
+    }
+    handler.next(err);
   }
 }
