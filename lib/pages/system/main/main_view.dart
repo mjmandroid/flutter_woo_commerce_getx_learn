@@ -88,7 +88,7 @@ class _MainViewGetX extends GetView<MainController> {
             HomePage(),
             CartIndexPage(),
             MsgIndexPage(),
-            MyIndexPage()
+            MyIndexPage(),
           ],
         ),
       ),
