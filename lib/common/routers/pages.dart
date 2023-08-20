@@ -22,6 +22,7 @@ class RouterPages {
     GetPage(
       name: RouteNames.main,
       page: () => MainPage(),
+      binding: MainBindings(),
     ),
     GetPage(
       name: RouteNames.welcome,

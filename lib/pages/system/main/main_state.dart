@@ -1,5 +1,3 @@
 class MainState {
-  MainState() {
-    ///Initialize variables
-  }
+  MainState() {}
 }
