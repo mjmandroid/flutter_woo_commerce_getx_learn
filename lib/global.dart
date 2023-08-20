@@ -7,11 +7,11 @@ import 'common/services/index.dart';
 class Global {
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
-
+    await Store().init();
     await Future.wait([
-      Store().init(),
       Get.putAsync(() async => ConfigService().init()),
       Get.putAsync(() async => WPHttpService()),
+      Get.putAsync(() async => UserService()),
     ]).whenComplete(() => {});
 
     Loading();

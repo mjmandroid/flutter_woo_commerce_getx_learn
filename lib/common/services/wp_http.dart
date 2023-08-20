@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/error_message.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
@@ -95,6 +96,10 @@ class RequestInterceptors extends Interceptor {
     // if (UserService.to.hasToken) {
     //   options.headers['Authorization'] = 'Bearer ${UserService.to.token}';
     // }
+    // http header 头加入 Authorization
+    if (UserService.to.hasToken) {
+      options.headers['Authorization'] = 'Bearer ${UserService.to.token}';
+    }
     return handler.next(options);
     // 如果你想完成请求并返回一些自定义数据，你可以resolve一个Response对象 `handler.resolve(response)`。
     // 这样请求将会被终止，上层then会被调用，then中返回的数据将是你的自定义response.

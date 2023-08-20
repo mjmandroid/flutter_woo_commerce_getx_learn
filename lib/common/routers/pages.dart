@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/styles/styles_index/view.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/system/login/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/system/register/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/system/register_pin/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/system/splash/view.dart';
@@ -37,6 +38,10 @@ class RouterPages {
     GetPage(
       name: RouteNames.systemRegisterPin,
       page: () => RegisterPinPage(),
+    ),
+    GetPage(
+      name: RouteNames.login,
+      page: () => LoginPage(),
     ),
   ];
 }

@@ -42,7 +42,9 @@ class RegisterController extends GetxController {
   }
 
   // 登录
-  void onSignIn() {}
+  void onSignIn() {
+    Get.toNamed(RouteNames.login);
+  }
 
   @override
   void onClose() {
