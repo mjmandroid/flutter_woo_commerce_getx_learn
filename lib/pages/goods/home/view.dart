@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_widget.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
@@ -40,7 +42,19 @@ class HomePage extends GetView<HomeController> {
 
   // 轮播广告
   Widget _buildBanner() {
-    return Container()
+    return GetBuilder<HomeController>(
+      builder: (_) {
+        return CarouselWidget(
+          items: controller.bannerItems,
+          onPageChanged: controller.onChangeBanner,
+          height: 190.w,
+          currentIndex: controller.bannerCurrentIndex,
+        );
+      },
+      init: Get.find<HomeController>(),
+      id: "home_banner",
+    )
+        .clipRRect(all: AppSpace.button)
         .sliverToBoxAdapter()
         .sliverPaddingHorizontal(AppSpace.page);
   }
