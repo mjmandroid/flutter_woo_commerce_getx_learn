@@ -102,10 +102,8 @@ class _MainViewGetX extends GetView<MainController> {
       id: "main",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: Text('main')),
-          body: SafeArea(
-            child: _buildView(),
-          ),
+          // appBar: AppBar(),
+          body: _buildView(),
         );
       },
     );
