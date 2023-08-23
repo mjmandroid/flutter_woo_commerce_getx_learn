@@ -146,6 +146,7 @@ class RequestInterceptors extends Interceptor {
             case 502:
               break;
           }
+          print("${err.message} ${err.requestOptions.path}");
           Loading.error(err.message);
         }
         break;
