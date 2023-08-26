@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_list.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_widget.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
@@ -61,7 +63,18 @@ class HomePage extends GetView<HomeController> {
 
   // 分类导航
   Widget _buildCategories() {
-    return Container()
+    return <Widget>[
+      for (var i = 0; i < controller.categoryItems.length; i++)
+        CategoryListItemWidget(
+          category: controller.categoryItems[i],
+          onTap: controller.onCategoryTap,
+        ).paddingRight(AppSpace.listItem),
+    ]
+        .toListView(
+          scrollDirection: Axis.horizontal,
+        )
+        .height(90.w)
+        .paddingVertical(AppSpace.listRow)
         .sliverToBoxAdapter()
         .sliverPaddingHorizontal(AppSpace.page);
   }
