@@ -3,6 +3,7 @@ import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_list.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:get/get.dart';
 
@@ -34,6 +35,10 @@ class ProductItemWidget extends StatelessWidget {
         ImageWidget.url(
           product.images?.first?.src ?? "",
           fit: BoxFit.cover,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(AppRadius.image),
+            topRight: Radius.circular(AppRadius.image),
+          ),
           width: imgWidth ?? constraints.minWidth,
           height: imgHeight,
         ),

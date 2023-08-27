@@ -10,6 +10,7 @@ import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/home/index.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -105,9 +106,28 @@ class HomePage extends GetView<HomeController> {
 
   // New Sell
   Widget _buildNewSell() {
-    return Container()
-        .sliverToBoxAdapter()
-        .sliverPaddingHorizontal(AppSpace.page);
+    return GetBuilder<HomeController>(
+      id: 'home_news_sell',
+      builder: (_) {
+        return SliverGrid(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => ProductItemWidget(
+              product: controller.newProductProductList[index],
+              imgHeight: 170.w,
+            ),
+            childCount: controller.newProductProductList.length,
+          ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.8,
+            mainAxisSpacing: AppSpace.listRow,
+            crossAxisSpacing: AppSpace.listItem,
+          ),
+        )
+            .sliverPadding(bottom: AppSpace.page)
+            .sliverPaddingHorizontal(AppSpace.page);
+      },
+    );
   }
 
   Widget _buildView() {
@@ -131,9 +151,12 @@ class HomePage extends GetView<HomeController> {
 
         // new product
         // title
-        Text(LocaleKeys.gHomeNewProduct.tr)
-            .sliverToBoxAdapter()
-            .sliverPaddingHorizontal(AppSpace.page),
+        controller.newProductProductList.isNotEmpty
+            ? BuildListTitle(
+                title: LocaleKeys.gHomeNewProduct.tr,
+                onTap: () => controller.onAllTap(false),
+              ).sliverToBoxAdapter().sliverPaddingHorizontal(AppSpace.page)
+            : const SliverToBoxAdapter(),
 
         // list
         _buildNewSell(),
@@ -149,7 +172,14 @@ class HomePage extends GetView<HomeController> {
       builder: (_) {
         return Scaffold(
           appBar: _buildAppBar(),
-          body: _buildView(),
+          body: SmartRefresher(
+            controller: controller.refreshController,
+            onRefresh: controller.onRefresh,
+            onLoading: controller.onLoading,
+            enablePullUp: true,
+            footer: const SmartRefresherFooterWidget(),
+            child: _buildView(),
+          ),
         );
       },
     );

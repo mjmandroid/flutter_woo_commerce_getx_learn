@@ -13,7 +13,9 @@ class ImageWidget extends StatelessWidget {
 
   final ImageWidgetType type;
 
-  final double? radius;
+  final double? radius; // 所有的
+
+  final BorderRadius? borderRadius;
 
   final double? width;
 
@@ -37,6 +39,7 @@ class ImageWidget extends StatelessWidget {
     required this.type,
     required this.url,
     this.radius,
+    this.borderRadius,
     this.width,
     this.height,
     this.fit,
@@ -49,6 +52,7 @@ class ImageWidget extends StatelessWidget {
     this.url, {
     Key? key,
     this.radius,
+    this.borderRadius,
     this.width,
     this.height,
     this.fit,
@@ -62,6 +66,7 @@ class ImageWidget extends StatelessWidget {
     this.url, {
     Key? key,
     this.radius,
+    this.borderRadius,
     this.width,
     this.height,
     this.fit,
@@ -75,6 +80,7 @@ class ImageWidget extends StatelessWidget {
     this.url, {
     Key? key,
     this.radius,
+    this.borderRadius,
     this.width,
     this.height,
     this.fit,
@@ -89,9 +95,10 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = BorderRadius.all(
-      Radius.circular(radius ?? AppRadius.image),
-    );
+    final borderRadius = this.borderRadius ??
+        BorderRadius.all(
+          Radius.circular(radius ?? AppRadius.image),
+        );
 
     Widget? image;
     switch (type) {

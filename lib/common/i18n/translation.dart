@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/locales/locale_en.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/locales/locale_zh.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class Translation extends Translations {
   // 当前系统语言
@@ -16,10 +17,11 @@ class Translation extends Translations {
     Locale('zh', 'CN'),
   ];
 
-  static const localizationDelegates = [
+  static const localizationDelegates = <LocalizationsDelegate>[
+    RefreshLocalizations.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate
   ];
 
   @override
