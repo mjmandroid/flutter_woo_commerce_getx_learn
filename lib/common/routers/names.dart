@@ -6,4 +6,5 @@ class RouteNames {
   static const register = '/register';
   static const systemRegisterPin = '/systemRegisterPin';
   static const login = '/login';
+  static const goodsProductDetails = '/goodsProductDetails';
 }

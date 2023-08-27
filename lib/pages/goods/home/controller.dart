@@ -51,4 +51,6 @@ class HomeController extends GetxController {
 
   // 分类点击事件
   void onCategoryTap(int categoryId) {}
+  // ALL 点击事件
+  void onAllTap(bool featured) {}
 }
