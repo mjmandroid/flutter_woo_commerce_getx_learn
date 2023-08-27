@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/constants.dart';
 import 'package:get/get.dart';
@@ -161,7 +162,9 @@ class HomeController extends GetxController {
   void onCategoryTap(int categoryId) {}
 
   // ALL 点击事件
-  void onAllTap(bool featured) {}
+  void onAllTap(bool featured) {
+    Get.toNamed(RouteNames.goodsProductList, arguments: {'featured': featured});
+  }
 
   @override
   void dispose() {
