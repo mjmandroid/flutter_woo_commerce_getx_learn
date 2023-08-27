@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/values/constants.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -35,6 +39,37 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    _loadCacheData();
+  }
+
+  void _loadCacheData() {
+    final stringBanner = Store().getString(Constants.storageHomeBanner);
+    final stringCategory = Store().getString(Constants.storageHomeCategories);
+    final stringFlashSell = Store().getString(Constants.storageHomeFlashSell);
+    final stringNewSell = Store().getString(Constants.storageHomeNewSell);
+
+    bannerItems = stringBanner.isEmpty
+        ? []
+        : jsonDecode(stringBanner)
+            .map<KeyValueModel>((e) => KeyValueModel.fromJson(e))
+            .toList();
+    categoryItems = stringCategory.isEmpty
+        ? []
+        : jsonDecode(stringCategory)
+            .map<CategoryModel>((e) => CategoryModel.fromJson(e))
+            .toList();
+
+    flashShellProductList = stringFlashSell.isEmpty
+        ? []
+        : jsonDecode(stringFlashSell)
+            .map<ProductModel>((e) => ProductModel.fromJson(e))
+            .toList();
+    newProductProductList = stringNewSell.isEmpty
+        ? []
+        : jsonDecode(stringFlashSell)
+            .map<ProductModel>((e) => ProductModel.fromJson(e))
+            .toList();
+    update(["home"]);
   }
 
   @override
@@ -54,6 +89,12 @@ class HomeController extends GetxController {
         await ProductApi.products(ProductsReq(featured: true));
     // 新商品
     newProductProductList = await ProductApi.products(ProductsReq());
+
+    /// 缓存数据
+    Store().setJson(Constants.storageHomeBanner, bannerItems);
+    Store().setJson(Constants.storageHomeCategories, categoryItems);
+    Store().setJson(Constants.storageHomeFlashSell, flashShellProductList);
+    Store().setJson(Constants.storageHomeNewSell, newProductProductList);
     // 模拟网络延迟 1 秒
     await Future.delayed(const Duration(seconds: 1));
     update(["home"]);

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Store {
@@ -21,6 +23,10 @@ class Store {
 
   Future<bool> setList(String key, List<String> value) async {
     return await _preferences.setStringList(key, value);
+  }
+
+  Future<bool> setJson(String key, Object value) async {
+    return await _preferences.setString(key, jsonEncode(value));
   }
 
   bool getBool(String key) {
