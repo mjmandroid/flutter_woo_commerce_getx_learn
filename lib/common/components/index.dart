@@ -1,5 +1,6 @@
 library index;
 
+export 'appbar.dart';
 export 'carousel.dart';
 export 'category_item.dart';
 export 'page_title.dart';

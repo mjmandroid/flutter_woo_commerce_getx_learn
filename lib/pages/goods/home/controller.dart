@@ -69,6 +69,13 @@ class HomeController extends GetxController {
         : jsonDecode(stringFlashSell)
             .map<ProductModel>((e) => ProductModel.fromJson(e))
             .toList();
+
+    // final tempList = List<ProductModel>.from(jsonDecode(stringFlashSell)
+    //     .map((e) => ProductModel.fromJson(e))
+    //     .toList());
+    // for (var item in tempList) {
+    //   print("-------${item.toJson()}");
+    // }
     update(["home"]);
   }
 
