@@ -109,7 +109,7 @@ class RequestInterceptors extends Interceptor {
   }
 
   Future<void> _errorNoAuthLogout() async {
-    Get.offAllNamed(RouteNames.systemRegisterPin);
+    Get.toNamed(RouteNames.login);
   }
 
   @override
