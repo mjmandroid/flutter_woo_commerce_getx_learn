@@ -8,4 +8,5 @@ class RouteNames {
   static const login = '/login';
   static const goodsProductDetails = '/goodsProductDetails';
   static const goodsProductList = '/home/goodsProductList';
+  static const goodsCategory = '/home/category';
 }

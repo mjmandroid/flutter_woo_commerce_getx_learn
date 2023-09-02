@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_list.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
-import 'package:flutter_woo_commerce_getx_learn/common/widgets/image.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 
 class CategoryListItemWidget extends StatelessWidget {
