@@ -4,6 +4,8 @@ import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_details/index.dart';
 import 'package:get/get.dart';
 
 import 'controller.dart';
@@ -46,6 +48,7 @@ class _ProductDetailsGetx extends GetView<ProductDetailsController> {
       tag: tag,
       builder: (_) {
         return CarouselWidget(
+          onTap: controller.onGalleryTap,
           items: controller.bannerItems,
           currentIndex: controller.bannerCurrentIndex,
           onPageChanged: controller.onChangeBanner,
@@ -60,17 +63,81 @@ class _ProductDetailsGetx extends GetView<ProductDetailsController> {
 
   // 商品标题
   Widget _buildTitle() {
-    return Text("滚动图");
+    return <Widget>[
+      <Widget>[
+        // 金额
+        TextWidget.title1(
+          "\$${controller.product?.price ?? 0}",
+        ).expanded(),
+        const IconTextWidget(
+          iconData: Icons.star,
+          text: "4.5",
+        ).paddingRight(AppSpace.iconTextMedium),
+        // 喜欢
+        const IconTextWidget(
+          iconData: Icons.favorite,
+          text: "100+",
+        ),
+      ].toRow(),
+      // 次标题
+      TextWidget.body1(
+        controller.product?.shortDescription?.clearHtml ?? "-",
+      ),
+    ]
+        .toColumn(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        )
+        .paddingAll(AppSpace.page);
+  }
+
+  // Tab 栏位按钮
+  Widget _buildTabBarItem(String textString, int index) {
+    return ButtonWidget.textFilled(
+      textString,
+      onTab: () => controller.onTabBarTap(index),
+      borderRadius: 17,
+      textColor: controller.tabIndex == index
+          ? AppColors.onPrimary
+          : AppColors.secondary,
+      bgColor:
+          controller.tabIndex == index ? AppColors.primary : Colors.transparent,
+    ).tight(width: 100.w, height: 35);
   }
 
   // Tab 栏位
   Widget _buildTabBar() {
-    return Text("Tab 栏位");
+    return GetBuilder<ProductDetailsController>(
+      id: 'product_tab',
+      tag: tag,
+      builder: (_) {
+        return <Widget>[
+          _buildTabBarItem(LocaleKeys.gDetailTabProduct.tr, 0),
+          _buildTabBarItem(LocaleKeys.gDetailTabDetails.tr, 1),
+          _buildTabBarItem(LocaleKeys.gDetailTabReviews.tr, 2),
+        ].toRow(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+        );
+      },
+    );
   }
 
   // TabView 视图
   Widget _buildTabView() {
-    return Text("TabView 视图");
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 0),
+        child: TabBarView(
+          controller: controller.tabController,
+          children: [
+            TabProductView(uniqueTag),
+            TabDetailView(uniqueTag),
+            TabReviewsView(uniqueTag),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildView() {

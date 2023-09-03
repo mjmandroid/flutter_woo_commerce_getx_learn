@@ -3,6 +3,7 @@ library index;
 export 'appbar.dart';
 export 'carousel.dart';
 export 'category_item.dart';
+export 'gallery.dart';
 export 'page_title.dart';
 export 'pin.dart';
 export 'placehold.dart';

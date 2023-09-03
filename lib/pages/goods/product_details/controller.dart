@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:get/get.dart';
 
-class ProductDetailsController extends GetxController {
+class ProductDetailsController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   // 商品 id , 获取路由传递参数
   int? productId = Get.arguments['id'] ?? 0;
 
@@ -14,6 +17,9 @@ class ProductDetailsController extends GetxController {
   // Banner 当前位置
   int bannerCurrentIndex = 0;
 
+  late TabController tabController;
+  int tabIndex = 0;
+
   @override
   void onReady() {
     super.onReady();
@@ -22,6 +28,7 @@ class ProductDetailsController extends GetxController {
 
   void _initData() async {
     await _loadProduct();
+    tabController = TabController(length: 3, vsync: this);
     update(["product_details"]);
   }
 
@@ -42,5 +49,25 @@ class ProductDetailsController extends GetxController {
   void onChangeBanner(int index, _reason) {
     bannerCurrentIndex = index;
     update(["product_banner"]); // 手动刷新 Banner
+  }
+
+  // 图片浏览
+  void onGalleryTap(int index, KeyValueModel item) {
+    Get.to(GalleryWidget(
+      initialIndex: index,
+      items: bannerItems.map<String>((e) => e.value!).toList(),
+    ));
+  }
+
+  void onTabBarTap(int index) {
+    tabIndex = index;
+    tabController.animateTo(tabIndex);
+    update(["product_tab"]);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    tabController.dispose();
   }
 }
