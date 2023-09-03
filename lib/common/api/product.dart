@@ -1,4 +1,5 @@
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/models/woo/attribute_model/attribute_model.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/wp_http.dart';
 
 class ProductApi {
@@ -36,5 +37,33 @@ class ProductApi {
       '/products/$id',
     );
     return ProductModel.fromJson(res.data);
+  }
+
+  /// 属性列表
+  /// id 1 颜色 2 尺寸
+  static Future<List<AttributeModel>> attributes(int id) async {
+    var res = await WPHttpService.to.get(
+      '/products/attributes/$id/terms',
+    );
+    print("----attributes" + "-${res.data.length}");
+    List<AttributeModel> attributes = [];
+    for (var item in res.data) {
+      attributes.add(AttributeModel.fromJson(item));
+    }
+    attributes.sort((a, b) => a.menu_order!.compareTo(b.menu_order!));
+    return attributes;
+  }
+
+  ///评论
+  static Future<List<ReviewModel>> reviews(ReviewsReq? req) async {
+    var res = await WPHttpService.to.get(
+      '/products/reviews',
+      params: req?.toJson(),
+    );
+    List<ReviewModel> reviews = [];
+    for (var item in res.data) {
+      reviews.add(ReviewModel.fromJson(item));
+    }
+    return reviews;
   }
 }

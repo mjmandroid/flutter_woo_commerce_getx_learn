@@ -9,4 +9,5 @@ export 'kv.dart';
 export 'user_token.dart';
 export 'welcome_model.dart';
 export 'woo/product_model/product_model.dart';
+export 'woo/review_model/review_model.dart';
 export 'woo/user_profile/user_profile_model.dart';

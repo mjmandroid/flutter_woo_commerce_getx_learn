@@ -99,6 +99,11 @@ class HomeController extends GetxController {
     newProductProductList = await ProductApi.products(ProductsReq());
     Store().setJson(Constants.storageHomeCategories, categoryItems);
 
+    final attributeColors = await ProductApi.attributes(1);
+    Store().setJson(Constants.storageProductsAttributesColors, attributeColors);
+    final attributeSizes = await ProductApi.attributes(2);
+    Store().setJson(Constants.storageProductsAttributesSizes, attributeSizes);
+
     /// 缓存数据
     Store().setJson(Constants.storageHomeBanner, bannerItems);
     Store().setJson(Constants.storageHomeCategories, categoryItems);

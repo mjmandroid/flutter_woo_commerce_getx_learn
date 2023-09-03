@@ -49,7 +49,10 @@ class BuildNavigation extends StatelessWidget {
             color: color,
           )
         ]
-            .toColumn(mainAxisSize: MainAxisSize.min)
+            .toColumn(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+            )
             .onTap(() => onTap(i))
             .expanded(),
       );
