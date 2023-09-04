@@ -9,4 +9,5 @@ class RouteNames {
   static const goodsProductDetails = '/goodsProductDetails';
   static const goodsProductList = '/home/goodsProductList';
   static const goodsCategory = '/home/category';
+  static const searchSearchIndex = '/home/searchSearchIndex';
 }

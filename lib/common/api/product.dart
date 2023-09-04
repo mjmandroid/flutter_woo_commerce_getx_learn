@@ -66,4 +66,17 @@ class ProductApi {
     }
     return reviews;
   }
+
+  ///tags 列表
+  static Future<List<TagModel>> tags(TagsReq? req) async {
+    var res = await WPHttpService.to.get(
+      '/products/tags',
+      params: req?.toJson(),
+    );
+    List<TagModel> reviews = [];
+    for (var item in res.data) {
+      reviews.add(TagModel.fromJson(item));
+    }
+    return reviews;
+  }
 }

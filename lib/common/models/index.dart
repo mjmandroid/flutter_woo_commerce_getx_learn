@@ -11,3 +11,4 @@ export 'welcome_model.dart';
 export 'woo/product_model/product_model.dart';
 export 'woo/review_model/review_model.dart';
 export 'woo/user_profile/user_profile_model.dart';
+export 'woo/tag_model/tag_model.dart';
