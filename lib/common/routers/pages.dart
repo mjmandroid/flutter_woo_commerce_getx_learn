@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/category/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_details/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_list/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/search/search_filter/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/search/search_index/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/styles/styles_index/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/system/login/index.dart';
@@ -63,6 +64,10 @@ class RouterPages {
     GetPage(
       name: RouteNames.searchSearchIndex,
       page: () => SearchIndexPage(),
+    ),
+    GetPage(
+      name: RouteNames.searchFilter,
+      page: () => SearchFilterPage(),
     ),
   ];
 }

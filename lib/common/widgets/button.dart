@@ -15,6 +15,7 @@ enum ButtonWidgetType {
   iconTextOutlined, // 图标/文字/边框
   iconTextUpDownOutlined, // 图标/文字/上下/边框
   textIcon, // 文字/图标
+  dropdown, // 文字/图标/两端对齐
 }
 
 class ButtonWidget extends StatelessWidget {
@@ -280,6 +281,36 @@ class ButtonWidget extends StatelessWidget {
         ),
         super(key: key);
 
+  /// 文字 / 图标 / dropdown
+  ButtonWidget.dropdown(
+    this.text,
+    this.icon, {
+    Key? key,
+    Color? textColor,
+    double? textSize,
+    FontWeight? textWeight,
+    this.type = ButtonWidgetType.dropdown,
+    this.onTab,
+    this.borderRadius = 0,
+    this.backgroundColor,
+    this.borderColor,
+    this.width,
+    this.height,
+  })  : child = <Widget>[
+          TextWidget.button(
+            text: text!,
+            size: textSize,
+            color: textColor ?? AppColors.onPrimaryContainer,
+            weight: textWeight,
+          ).expanded(),
+          icon!,
+        ]
+            .toRow(
+              mainAxisSize: MainAxisSize.min,
+            )
+            .paddingHorizontal(AppSpace.button),
+        super(key: key);
+
   MaterialStateProperty<Color>? get _backgroundColor {
     switch (type) {
       case ButtonWidgetType.primary:
@@ -299,6 +330,11 @@ class ButtonWidget extends StatelessWidget {
         return MaterialStateProperty.all(BorderSide(
           width: 1,
           color: borderColor ?? AppColors.outline,
+        ));
+      case ButtonWidgetType.dropdown:
+        MaterialStateProperty.all(BorderSide(
+          color: borderColor ?? AppColors.outline,
+          width: 1,
         ));
     }
     return null;

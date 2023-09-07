@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
 import 'package:get/get.dart';
 
 class SearchIndexController extends GetxController {
@@ -38,7 +39,12 @@ class SearchIndexController extends GetxController {
   }
 
   // 列表项点击事件
-  void onListItemTap(TagModel tagModel) {}
+  void onListItemTap(TagModel tagModel) {
+    Get.toNamed(
+      RouteNames.searchFilter,
+      arguments: {"tagId": tagModel.id},
+    );
+  }
 
   Future<bool> _loadSearch(String keyword) async {
     if (keyword.trim().isEmpty == true) {

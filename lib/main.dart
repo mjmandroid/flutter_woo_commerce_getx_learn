@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
               },
               getPages: RouterPages.list,
               initialRoute: RouteNames.splash,
+              defaultTransition: Transition.rightToLeftWithFade,
               navigatorObservers: [RouterPages.observer],
               translations: Translation(),
               localizationsDelegates: Translation.localizationDelegates,

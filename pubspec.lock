@@ -113,6 +113,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.0"
+  dropdown_button2:
+    dependency: "direct main"
+    description:
+      name: dropdown_button2
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.9.4"
   encrypt:
     dependency: "direct main"
     description:

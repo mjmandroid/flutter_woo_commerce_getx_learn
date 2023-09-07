@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_widget.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/extension/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';

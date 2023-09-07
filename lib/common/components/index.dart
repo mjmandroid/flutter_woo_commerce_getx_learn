@@ -4,6 +4,7 @@ export 'appbar.dart';
 export 'carousel.dart';
 export 'category_item.dart';
 export 'colors_list.dart';
+export 'dropdown.dart';
 export 'gallery.dart';
 export 'page_title.dart';
 export 'pin.dart';
