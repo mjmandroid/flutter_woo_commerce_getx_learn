@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_list.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_widget.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
@@ -24,11 +25,33 @@ class FilterView extends GetView<SearchFilterController> {
     return <Widget>[
       //顶部bar
       _buildTopBar(),
+      // 价格
+      _buildTitle(LocaleKeys.searchFilterPrice.tr),
+      _buildPriceRange(),
     ]
         .toColumn(
           crossAxisAlignment: CrossAxisAlignment.start,
         )
         .paddingHorizontal(AppSpace.page);
+  }
+
+  Widget _buildPriceRange() {
+    return GetBuilder<SearchFilterController>(
+      id: 'filter_price_range',
+      builder: (_) {
+        return PriceRangeWidget(
+          max: 5000,
+          min: 0,
+          values: controller.priceRange,
+          onDragging: controller.onPriceRangeDragging,
+        ).paddingBottom(AppSpace.listRow * 2);
+      },
+    );
+  }
+
+  // 标题栏
+  Widget _buildTitle(String title) {
+    return TextWidget.body2(title).paddingBottom(AppSpace.listRow);
   }
 
   Widget _buildTopBar() {

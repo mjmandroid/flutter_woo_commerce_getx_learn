@@ -332,7 +332,7 @@ class ButtonWidget extends StatelessWidget {
           color: borderColor ?? AppColors.outline,
         ));
       case ButtonWidgetType.dropdown:
-        MaterialStateProperty.all(BorderSide(
+        return MaterialStateProperty.all(BorderSide(
           color: borderColor ?? AppColors.outline,
           width: 1,
         ));

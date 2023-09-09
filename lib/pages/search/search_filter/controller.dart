@@ -18,6 +18,8 @@ class SearchFilterController extends GetxController {
       KeyValueModel(key: "rating", value: "Best Match");
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  // 价格范围 0~1000
+  final List<double> priceRange = [100, 1000];
 
   // 排序选中
   void onOrderTap(KeyValueModel? val) {
@@ -27,6 +29,18 @@ class SearchFilterController extends GetxController {
 
   void onFilterOpenTap() {
     scaffoldKey.currentState?.openEndDrawer();
+  }
+
+  // 价格区间拖动
+  void onPriceRangeDragging(
+    int handlerIndex,
+    dynamic lowerValue,
+    dynamic upperValue,
+  ) {
+    print("----$lowerValue  $upperValue");
+    priceRange[0] = lowerValue as double;
+    priceRange[1] = upperValue as double;
+    update(["filter_price_range"]);
   }
 
   // 筛选 关闭
