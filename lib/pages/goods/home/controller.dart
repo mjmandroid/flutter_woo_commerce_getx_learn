@@ -103,6 +103,18 @@ class HomeController extends GetxController {
     Store().setJson(Constants.storageProductsAttributesColors, attributeColors);
     final attributeSizes = await ProductApi.attributes(2);
     Store().setJson(Constants.storageProductsAttributesSizes, attributeSizes);
+    // 品牌
+    var attributeBrand = await ProductApi.attributes(3);
+    // 性别
+    var attributeGender = await ProductApi.attributes(4);
+    // 新旧
+    var attributeCondition = await ProductApi.attributes(5);
+    Store().setString(
+        Constants.storageProductsAttributesBrand, jsonEncode(attributeBrand));
+    Store().setString(
+        Constants.storageProductsAttributesGender, jsonEncode(attributeGender));
+    Store().setString(Constants.storageProductsAttributesCondition,
+        jsonEncode(attributeCondition));
 
     /// 缓存数据
     Store().setJson(Constants.storageHomeBanner, bannerItems);

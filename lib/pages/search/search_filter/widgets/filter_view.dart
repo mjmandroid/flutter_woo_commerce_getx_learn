@@ -35,7 +35,97 @@ class FilterView extends GetView<SearchFilterController> {
           textSelectColor: AppColors.onPrimary,
           textSize: 9,
           fontWeight: FontWeight.w400,
-        );
+        ).paddingBottom(AppSpace.listRow * 2);
+      },
+    );
+  }
+
+  Widget _buildColors() {
+    return GetBuilder<SearchFilterController>(
+      id: 'filter_colors',
+      builder: (_) {
+        return ColorListWidget(
+          itemList: controller.colors,
+          keys: controller.colorKeys,
+          onTap: controller.onColorTap,
+          size: 24,
+        ).paddingBottom(AppSpace.listRow * 2);
+      },
+    );
+  }
+
+  Widget _buildStars() {
+    return GetBuilder<SearchFilterController>(
+      id: 'filter_stars',
+      builder: (_) {
+        return StarsListWidget(
+          onTap: controller.onStarTap,
+          value: controller.starValue,
+          size: 18,
+          selectedColor: AppColors.highlight,
+        ).paddingBottom(AppSpace.listRow * 2);
+      },
+    );
+  }
+
+  Widget _buildBrands() {
+    return GetBuilder<SearchFilterController>(
+      id: 'filter_brands',
+      builder: (_) {
+        return TagsListWidget(
+          onTap: controller.onBrandTap,
+          itemList: controller.brands,
+          keys: controller.brandKeys,
+          bgSelectColor: AppColors.highlight,
+          textSelectColor: AppColors.onPrimary,
+          borderRadius: 11,
+          height: 17,
+          width: 55,
+          textSize: 9,
+          fontWeight: FontWeight.w400,
+        ).paddingBottom(AppSpace.listRow * 2);
+      },
+    );
+  }
+
+  // 性别选择
+  Widget _buildGenders() {
+    return GetBuilder<SearchFilterController>(
+      id: "filter_genders",
+      builder: (_) {
+        return TagsListWidget(
+          onTap: controller.onGenderTap,
+          itemList: controller.genders,
+          keys: controller.genderKeys,
+          bgSelectColor: AppColors.highlight,
+          textSelectColor: AppColors.onPrimary,
+          borderRadius: 11,
+          height: 17,
+          width: 55,
+          textSize: 9,
+          fontWeight: FontWeight.w400,
+        ).paddingBottom(AppSpace.listRow * 2);
+      },
+    );
+  }
+
+  // 新旧选择
+  Widget _buildConditions() {
+    return GetBuilder<SearchFilterController>(
+      id: "filter_conditions",
+      builder: (_) {
+        return TagsListWidget(
+          onTap: controller.onConditionTap,
+          itemList: controller.conditions,
+          keys: controller.conditionKeys,
+          bgSelectColor: AppColors.highlight,
+          textSelectColor: AppColors.onPrimary,
+          borderRadius: 11,
+          height: 17,
+          width: 55,
+          textSize: 9,
+          fontWeight: FontWeight.w400,
+        ).paddingBottom(AppSpace.listRow * 2);
       },
     );
   }
@@ -50,6 +140,23 @@ class FilterView extends GetView<SearchFilterController> {
       // 尺寸
       _buildTitle(LocaleKeys.searchFilterSize.tr),
       _buildSizes(),
+      // 颜色
+      _buildTitle(LocaleKeys.searchFilterColor.tr),
+      _buildColors(),
+      // 评价
+      _buildTitle(LocaleKeys.searchFilterReview.tr),
+      _buildStars(),
+      // 品牌
+      _buildTitle(LocaleKeys.searchFilterBrand.tr),
+      _buildBrands(),
+
+      // 性别
+      _buildTitle(LocaleKeys.searchFilterGender.tr),
+      _buildGenders(),
+
+      // 新旧
+      _buildTitle(LocaleKeys.searchFilterCondition.tr),
+      _buildConditions(),
     ]
         .toColumn(
           crossAxisAlignment: CrossAxisAlignment.start,

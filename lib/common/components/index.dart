@@ -15,3 +15,4 @@ export 'slider_indicator.dart';
 export 'tags_list.dart';
 export 'welcome_slider.dart';
 export 'price_range.dart';
+export 'stars_list.dart';
