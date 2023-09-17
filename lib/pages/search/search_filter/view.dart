@@ -7,6 +7,7 @@ import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/search/search_filter/index.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'controller.dart';
 
@@ -48,7 +49,25 @@ class SearchFilterPage extends GetView<SearchFilterController> {
 
   // 数据列表
   Widget _buildListView() {
-    return Text("数据列表");
+    return GetBuilder<SearchFilterController>(
+      id: "filter_products",
+      builder: (_) {
+        return controller.items.isEmpty
+            ? const PlaceholdWidget().sliverToBoxAdapter()
+            : SliverGrid.extent(
+                maxCrossAxisExtent: 120,
+                childAspectRatio: 0.7,
+                mainAxisSpacing: AppSpace.listRow,
+                crossAxisSpacing: AppSpace.listItem,
+                children: controller.items
+                    .map((e) => ProductItemWidget(
+                          product: e,
+                          imgHeight: 117.w,
+                        ))
+                    .toList(),
+              );
+      },
+    );
   }
 
   // 主视图
@@ -57,7 +76,18 @@ class SearchFilterPage extends GetView<SearchFilterController> {
       // 筛选栏
       _buildFilterBar(),
       // 数据列表
-      _buildListView(),
+      SmartRefresher(
+        controller: controller.refreshController,
+        enablePullUp: true,
+        onRefresh: controller.onRefresh,
+        onLoading: controller.onLoading,
+        footer: const SmartRefresherFooterWidget(),
+        child: CustomScrollView(
+          slivers: [
+            _buildListView().sliverPaddingHorizontal(AppSpace.button),
+          ],
+        ),
+      ).expanded(),
     ].toColumn();
   }
 
