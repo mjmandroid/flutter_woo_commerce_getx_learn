@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,11 @@ class MainController extends GetxController {
 
   // 切换页面
   void onJumpToPage(int page) {
-    pageController.jumpToPage(page);
+    if (page != 0 && !UserService.to.isLogin) {
+      Get.toNamed(RouteNames.login);
+    } else {
+      pageController.jumpToPage(page);
+    }
   }
 
   @override
