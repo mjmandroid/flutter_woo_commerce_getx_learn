@@ -46,6 +46,13 @@ class UserService extends GetxService {
     Store().setString(Constants.storageProfile, jsonEncode(result));
   }
 
+  Future<void> setProfile(UserProfileModel model) async {
+    if (token.isEmpty) return;
+    _isLogin.value = true;
+    _profile(profile);
+    Store().setString(Constants.storageProfile, jsonEncode(model));
+  }
+
   /// 注销
   Future<void> logout() async {
     // if (_isLogin.value) await UserAPIs.logout();

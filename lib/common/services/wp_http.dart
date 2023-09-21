@@ -25,6 +25,7 @@ class WPHttpService extends GetxService {
         responseType: ResponseType.json);
     _dio = Dio(options);
     _dio.interceptors.add(RequestInterceptors());
+    _dio.interceptors.add(LogInterceptor());
   }
 
   Future<Response> get(
