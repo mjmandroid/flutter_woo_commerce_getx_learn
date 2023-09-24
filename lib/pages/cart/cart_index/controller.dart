@@ -1,4 +1,7 @@
+import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:get/get.dart';
 
 class CartIndexController extends GetxController {
@@ -49,5 +52,25 @@ class CartIndexController extends GetxController {
     }
     selectedIds.clear();
     update(["cart_index"]);
+  }
+
+  Future<void> onApplyCoupon() async {
+    if (couponCode.isEmpty) {
+      Loading.error("Voucher code empty.");
+      return;
+    }
+    CouponsModel? coupon = await CouponApi.couponDetail(couponCode);
+    if (coupon != null) {
+      couponCode = "";
+      bool isSuccess = CartService.to.applyCoupon(coupon);
+      if (isSuccess) {
+        Loading.success("Coupon applied.");
+      } else {
+        Loading.error("Coupon is already applied.");
+      }
+      update(["cart_index"]);
+    } else {
+      Loading.error("Coupon code is not valid.");
+    }
   }
 }

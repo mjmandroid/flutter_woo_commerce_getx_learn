@@ -1,3 +1,4 @@
+import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/woo/order_model/line_item.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,9 @@ class CartService extends GetxService {
 
   ///购物车列表
   final RxList<LineItem> lineItems = RxList<LineItem>();
+
+  /// 优惠券列表
+  final List<CouponsModel> lineCoupons = [];
 
   void addCart(LineItem item) {
     int index =
@@ -55,8 +59,23 @@ class CartService extends GetxService {
   /// 运费
   double get shipping => 0;
 
+  /// 使用优惠券
+  bool applyCoupon(CouponsModel item) {
+    // 是否有重复
+    int index = lineCoupons.indexWhere((element) => element.id == item.id);
+    if (index >= 0) {
+      return false;
+    }
+    // 添加
+    lineCoupons.add(item);
+    return true;
+  }
+
   /// 折扣
-  double get discount => 0;
+  double get discount =>
+      lineCoupons.fold<double>(0, (double previousValue, CouponsModel element) {
+        return previousValue + (double.parse(element.amount ?? "0"));
+      });
 
   /// 商品合计价格
   double get totalItemsPrice =>

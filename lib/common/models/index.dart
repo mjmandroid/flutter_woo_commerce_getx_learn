@@ -9,6 +9,7 @@ export 'kv.dart';
 export 'user_token.dart';
 export 'welcome_model.dart';
 export 'woo/continents_model/continents_model.dart';
+export 'woo/coupons_model/coupons_model.dart';
 export 'woo/order_model/order_model.dart';
 export 'woo/product_model/product_model.dart';
 export 'woo/review_model/review_model.dart';

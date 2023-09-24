@@ -21,6 +21,7 @@ class CartIndexPage extends GetView<CartIndexController> {
       InputWidget.textBorder(
         hintText: 'Voucher Code',
         fillColor: AppColors.surface,
+        onChanged: (value) => controller.couponCode = value,
       ).expanded(),
       SizedBox(
         width: AppSpace.listItem,
@@ -30,6 +31,7 @@ class CartIndexPage extends GetView<CartIndexController> {
         textColor: AppColors.highlight,
         textSize: 12.sp,
         textWidget: FontWeight.w500,
+        onTab: controller.onApplyCoupon,
       ),
     ].toRow();
   }
