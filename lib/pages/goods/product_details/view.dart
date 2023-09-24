@@ -158,6 +158,15 @@ class _ProductDetailsGetx extends GetView<ProductDetailsController> {
           ].toColumn();
   }
 
+  Widget _buildButtons() {
+    return <Widget>[
+      ButtonWidget.secondary(
+        LocaleKeys.gDetailBtnAddCart.tr,
+        onTab: controller.onAddCartTap, // 加入购物车事件
+      ).expanded(),
+    ].toRow();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductDetailsController>(
@@ -170,7 +179,16 @@ class _ProductDetailsGetx extends GetView<ProductDetailsController> {
             titleString: controller.product?.name ?? LocaleKeys.gDetailTitle.tr,
           ),
           body: SafeArea(
-            child: _buildView(),
+            child: <Widget>[
+              _buildView(),
+              // 底部按钮
+              if (controller.product != null)
+                _buildButtons().positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 10,
+                ),
+            ].toStack(),
           ),
         );
       },

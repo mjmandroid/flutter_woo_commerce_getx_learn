@@ -5,6 +5,8 @@ import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/woo/attribute_model/attribute_model.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/models/woo/order_model/line_item.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:get/get.dart';
@@ -236,6 +238,23 @@ class ProductDetailsController extends GetxController
       initialIndex: index,
       items: reviewImages,
     ));
+  }
+
+  // 加入购物车
+  void onAddCartTap() async {
+    if (!await UserService.to.checkIsLogin()) {
+      return;
+    }
+    // 检查空
+    if (product == null || product?.id == null) {
+      Loading.error("product is empty");
+      return;
+    }
+    CartService.to.addCart(LineItem(
+      productId: productId,
+      product: product,
+    ));
+    Get.back();
   }
 
   @override

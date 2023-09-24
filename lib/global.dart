@@ -13,6 +13,7 @@ class Global {
       Get.putAsync(() async => ConfigService().init()),
       Get.putAsync(() async => WPHttpService()),
       Get.putAsync(() async => UserService()),
+      Get.putAsync(() async => CartService()),
     ]).whenComplete(() => {});
 
     Loading();

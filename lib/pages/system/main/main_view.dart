@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
@@ -54,30 +55,32 @@ class _MainViewGetX extends GetView<MainController> {
         bottomNavigationBar: GetBuilder<MainController>(
           id: "navigation",
           builder: (_) {
-            return BuildNavigation(
-              currentIndex: controller.currentIndex,
-              items: [
-                NavigationItemModel(
-                  label: LocaleKeys.tabBarHome.tr,
-                  icon: AssetsSvgs.navHomeSvg,
-                ),
-                NavigationItemModel(
-                  label: LocaleKeys.tabBarCart.tr,
-                  icon: AssetsSvgs.navCartSvg,
-                  count: 3,
-                ),
-                NavigationItemModel(
-                  label: LocaleKeys.tabBarMessage.tr,
-                  icon: AssetsSvgs.navMessageSvg,
-                  count: 9,
-                ),
-                NavigationItemModel(
-                  label: LocaleKeys.tabBarProfile.tr,
-                  icon: AssetsSvgs.navProfileSvg,
-                ),
-              ],
-              onTap: controller.onJumpToPage,
-            );
+            return Obx(() {
+              return BuildNavigation(
+                currentIndex: controller.currentIndex,
+                items: [
+                  NavigationItemModel(
+                    label: LocaleKeys.tabBarHome.tr,
+                    icon: AssetsSvgs.navHomeSvg,
+                  ),
+                  NavigationItemModel(
+                    label: LocaleKeys.tabBarCart.tr,
+                    icon: AssetsSvgs.navCartSvg,
+                    count: CartService.to.lineItemCount,
+                  ),
+                  NavigationItemModel(
+                    label: LocaleKeys.tabBarMessage.tr,
+                    icon: AssetsSvgs.navMessageSvg,
+                    count: 9,
+                  ),
+                  NavigationItemModel(
+                    label: LocaleKeys.tabBarProfile.tr,
+                    icon: AssetsSvgs.navProfileSvg,
+                  ),
+                ],
+                onTap: controller.onJumpToPage,
+              );
+            });
           },
         ),
         body: PageView(
