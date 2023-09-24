@@ -164,7 +164,14 @@ class _ProductDetailsGetx extends GetView<ProductDetailsController> {
         LocaleKeys.gDetailBtnAddCart.tr,
         onTab: controller.onAddCartTap, // 加入购物车事件
       ).expanded(),
-    ].toRow();
+      // 间距
+      SizedBox(width: AppSpace.iconTextLarge),
+      // 立刻购买
+      ButtonWidget.primary(
+        LocaleKeys.gDetailBtnBuy.tr,
+        onTab: controller.onCheckoutTap, // 立刻购买事件
+      ).expanded(),
+    ].toRow().paddingHorizontal(AppSpace.page);
   }
 
   @override

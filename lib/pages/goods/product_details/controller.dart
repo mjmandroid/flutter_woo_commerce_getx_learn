@@ -257,6 +257,8 @@ class ProductDetailsController extends GetxController
     Get.back();
   }
 
+  void onCheckoutTap() {}
+
   @override
   void dispose() {
     super.dispose();
