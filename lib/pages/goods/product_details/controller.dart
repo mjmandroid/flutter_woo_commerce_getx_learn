@@ -9,6 +9,7 @@ import 'package:flutter_woo_commerce_getx_learn/common/models/woo/order_model/li
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/cart/buy_now/index.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -257,7 +258,21 @@ class ProductDetailsController extends GetxController
     Get.back();
   }
 
-  void onCheckoutTap() {}
+  void onCheckoutTap() async {
+    // 检查是否登录
+    if (!await UserService.to.checkIsLogin()) {
+      return;
+    }
+
+    // 检查空
+    if (product == null || product?.id == null) {
+      Loading.error("product is empty");
+      return;
+    }
+    ActionBottomSheet.barModal(BuyNowPage(
+      product: product!,
+    ));
+  }
 
   @override
   void dispose() {

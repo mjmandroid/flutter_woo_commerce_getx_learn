@@ -134,4 +134,21 @@ Map<String, String> localeEn = {
   LocaleKeys.gCartTextShippingCost: 'Shipping cost',
   LocaleKeys.gCartTextVocher: 'Voucher',
   LocaleKeys.gCartTextTotal: 'Total',
+  // 下单 checkout
+  LocaleKeys.placeOrderTitle: 'Checkout',
+  LocaleKeys.placeOrderPayment: 'Payment Method',
+  LocaleKeys.placeOrderShippingAddress: 'Shipping Address',
+  LocaleKeys.placeOrderQuantity: 'Quantity',
+  LocaleKeys.placeOrderPrice: 'Price',
+  LocaleKeys.placeOrderPriceShipping: 'Shipping',
+  LocaleKeys.placeOrderPriceDiscount: 'Discount',
+  LocaleKeys.placeOrderPriceVoucherCode: 'Voucher Code',
+  LocaleKeys.placeOrderPriceVoucherCodeEnter: 'Voucher Code Enter',
+  LocaleKeys.placeOrderTotal: 'Total',
+  LocaleKeys.placeOrderBtnPlaceOrder: 'Place Order',
+
+  // 下单确认
+  LocaleKeys.orderConfirmationTitle: 'Order Placed',
+  LocaleKeys.orderConfirmationDesc: 'Your order was placed Successfully',
+  LocaleKeys.orderConfirmationBtnHome: 'Go Home',
 };
