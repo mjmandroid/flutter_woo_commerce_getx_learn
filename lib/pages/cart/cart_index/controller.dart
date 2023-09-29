@@ -1,5 +1,6 @@
 import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/models/woo/order_model/line_item.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:get/get.dart';
@@ -72,5 +73,11 @@ class CartIndexController extends GetxController {
     } else {
       Loading.error("Coupon code is not valid.");
     }
+  }
+
+  // 修改订单数量
+  Future<void> onChangeQuantity(LineItem item, int quantity) async {
+    CartService.to.changeQuantity(item.productId!, quantity);
+    update(["cart_index"]);
   }
 }

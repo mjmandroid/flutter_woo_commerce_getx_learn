@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_list.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/ex_widget.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
@@ -71,7 +72,12 @@ class CartItem extends StatelessWidget {
             "\$ ${lineItem.total}",
             weight: FontWeight.bold,
           ).expanded(),
-
+          QuantityWidget(
+            onChange: (quantity) {
+              onChangeQuantity?.call(quantity);
+            },
+            quantity: lineItem.quantity ?? 0,
+          ),
           // end
         ].toRow().paddingTop(AppSpace.listRow),
       ]
