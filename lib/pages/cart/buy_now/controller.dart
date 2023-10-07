@@ -1,7 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/utils/bottom_sheet.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/utils/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/cart/apply_promo_code/index.dart';
 import 'package:get/get.dart';
 
 class BuyNowController extends GetxController {
@@ -15,9 +21,14 @@ class BuyNowController extends GetxController {
   // 运费
   double get shipping => 0;
   // 折扣
-  double get discount => 0;
+  double get discount =>
+      lineCoupons.fold<double>(0, (double previousValue, CouponsModel element) {
+        return previousValue + (double.parse(element.amount ?? "0"));
+      });
 
   double get totalPrice => double.parse(product.price!) * quantity;
+  // 优惠券列表
+  final List<CouponsModel> lineCoupons = [];
 
   BuyNowController(this.product);
 
@@ -61,5 +72,44 @@ class BuyNowController extends GetxController {
     }
     quantity = value;
     update(["buy_now"]);
+  }
+
+  bool _applyCoupon(CouponsModel couponsModel) {
+    int index =
+        lineCoupons.indexWhere((element) => element.id == couponsModel.id);
+    if (index >= 0) {
+      return false;
+    }
+    // 添加
+    lineCoupons.add(couponsModel);
+    return true;
+  }
+
+// 显示输入优惠券 568935ab
+  void onEnterCouponCode() {
+    ActionBottomSheet.popModal(
+        child: ApplyPromoCodePage(
+          onApplyCouponCode: (couponCode) async {
+            // 判断优惠券是否存在
+            if (couponCode.isEmpty) {
+              Loading.error("Voucher code empty.");
+              return;
+            }
+            CouponsModel? coupon = await CouponApi.couponDetail(couponCode);
+            if (coupon != null) {
+              couponCode = "";
+              bool isSuccess = _applyCoupon(coupon);
+              if (isSuccess) {
+                Loading.success("Coupon applied.");
+              } else {
+                Loading.error("Coupon is already applied.");
+              }
+              update(["buy_now"]);
+            } else {
+              Loading.error("Coupon code is not valid.");
+            }
+          },
+        ),
+        safeAreaMinimum: EdgeInsets.fromLTRB(50.w, 0, 50.w, 140.w));
   }
 }

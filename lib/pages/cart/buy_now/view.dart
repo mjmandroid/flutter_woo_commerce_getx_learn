@@ -102,6 +102,7 @@ class BuyNowPage extends GetView<BuyNowController> {
           LocaleKeys.placeOrderPriceVoucherCodeEnter.tr,
           textSize: 9,
           textColor: AppColors.highlight,
+          onTab: controller.onEnterCouponCode,
         ),
       ),
       // Total: $14.60
