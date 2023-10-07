@@ -60,6 +60,29 @@ class BuyNowPage extends GetView<BuyNowController> {
     );
   }
 
+  Widget _buildShipping() {
+    return <Widget>[
+      // 文字
+      TextWidget.body1(controller.shippingAddress).expanded(),
+      IconWidget.icon(
+        Icons.arrow_drop_down,
+        size: 32,
+      ),
+    ]
+        .toRow()
+        .paddingAll(AppSpace.button)
+        .decorated(
+          color: AppColors.surfaceVariant,
+          border: Border.all(
+            width: 0.5,
+            color: AppColors.outline,
+          ),
+          borderRadius: BorderRadius.circular(AppRadius.button),
+        )
+        .onTap(controller.onShippingTap)
+        .paddingBottom(AppSpace.listRow);
+  }
+
   Widget _buildView() {
     return <Widget>[
       // 支付方式
@@ -68,7 +91,7 @@ class BuyNowPage extends GetView<BuyNowController> {
 
       // 送货地址
       _buildTitle(LocaleKeys.placeOrderShippingAddress.tr),
-
+      _buildShipping(),
       // 数量
       _buildTitle(LocaleKeys.placeOrderQuantity.tr),
 
