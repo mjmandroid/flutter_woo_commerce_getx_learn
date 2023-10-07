@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/widgets/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/cart/buy_now/controller.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/cart/buy_now/index.dart';
 import 'package:get/get.dart';
 
 class BuyNowPage extends GetView<BuyNowController> {
@@ -64,7 +66,7 @@ class BuyNowPage extends GetView<BuyNowController> {
     return <Widget>[
       // 文字
       TextWidget.body1(controller.shippingAddress).expanded(),
-      IconWidget.icon(
+      const IconWidget.icon(
         Icons.arrow_drop_down,
         size: 32,
       ),
@@ -83,6 +85,34 @@ class BuyNowPage extends GetView<BuyNowController> {
         .paddingBottom(AppSpace.listRow);
   }
 
+  Widget _buildPrice() {
+    return <Widget>[
+      BuildPriceLine(
+        titleString: LocaleKeys.placeOrderPriceShipping.tr,
+        priceString: "\$${controller.shipping}",
+      ),
+      // Discount: $3.05
+      BuildPriceLine(
+        titleString: LocaleKeys.placeOrderPriceDiscount.tr,
+        priceString: "\$${controller.discount}",
+      ),
+      BuildPriceLine(
+        titleString: LocaleKeys.placeOrderPriceVoucherCode.tr,
+        rightWidget: ButtonWidget.text(
+          LocaleKeys.placeOrderPriceVoucherCodeEnter.tr,
+          textSize: 9,
+          textColor: AppColors.highlight,
+        ),
+      ),
+      // Total: $14.60
+      BuildPriceLine(
+        leftWidget: TextWidget.body1(LocaleKeys.placeOrderTotal.tr),
+        rightWidget: TextWidget.body1(
+            "\$${controller.totalPrice - controller.discount}"),
+      ),
+    ].toColumn().paddingBottom(AppSpace.listRow);
+  }
+
   Widget _buildView() {
     return <Widget>[
       // 支付方式
@@ -94,10 +124,13 @@ class BuyNowPage extends GetView<BuyNowController> {
       _buildShipping(),
       // 数量
       _buildTitle(LocaleKeys.placeOrderQuantity.tr),
-
+      QuantityWidget(
+        quantity: controller.quantity,
+        onChange: controller.onQuantityChange,
+      ).paddingBottom(AppSpace.listRow),
       // 小计
       _buildTitle(LocaleKeys.placeOrderPrice.tr),
-
+      _buildPrice(),
       // 按钮
       _buildButtons(),
     ]

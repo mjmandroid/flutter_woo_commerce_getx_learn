@@ -11,6 +11,14 @@ class BuyNowController extends GetxController {
   // 送货地址
   String shippingAddress = "";
 
+  int quantity = 1;
+  // 运费
+  double get shipping => 0;
+  // 折扣
+  double get discount => 0;
+
+  double get totalPrice => double.parse(product.price!) * quantity;
+
   BuyNowController(this.product);
 
   // 支付方式图标
@@ -44,5 +52,14 @@ class BuyNowController extends GetxController {
       shippingAddress = UserService.to.shipping;
       update(["buy_now"]);
     }
+  }
+
+  // 修改数量
+  void onQuantityChange(int value) {
+    if (value <= 0) {
+      value = 1;
+    }
+    quantity = value;
+    update(["buy_now"]);
   }
 }
