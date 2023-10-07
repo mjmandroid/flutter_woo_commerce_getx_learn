@@ -6,6 +6,7 @@ export './request/user_register.dart';
 export './woo/category_model/category_model.dart';
 export 'error_message.dart';
 export 'kv.dart';
+export 'request/order.dart';
 export 'user_token.dart';
 export 'welcome_model.dart';
 export 'woo/continents_model/continents_model.dart';

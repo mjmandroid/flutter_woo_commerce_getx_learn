@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/values/index.dart';
@@ -18,7 +19,7 @@ class MyIndexPage extends GetView<MyIndexController> {
       title: LocaleKeys.myBtnMyOrder.tr,
       svgPath: AssetsSvgs.pDeliverySvg,
       color: "4061FF".toColor,
-      // onTap: () => Get.toNamed(RouteNames.myOrderList),
+      onTap: () => Get.toNamed(RouteNames.orderList),
     ).card().paddingVertical(
           AppSpace.page,
         );

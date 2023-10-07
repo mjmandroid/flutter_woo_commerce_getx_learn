@@ -4,6 +4,8 @@ import 'package:flutter_woo_commerce_getx_learn/pages/goods/category/index.dart'
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_details/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_list/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/my/my_address/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/my/order_details/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/my/order_list/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/search/search_filter/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/search/search_index/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/styles/styles_index/view.dart';
@@ -78,6 +80,14 @@ class RouterPages {
     GetPage(
       name: RouteNames.cartBuyDone,
       page: () => BuyDonePage(),
-    )
+    ),
+    GetPage(
+      name: RouteNames.orderList,
+      page: () => OrderListPage(),
+    ),
+    GetPage(
+      name: RouteNames.orderDetail,
+      page: () => OrderDetailPage(),
+    ),
   ];
 }

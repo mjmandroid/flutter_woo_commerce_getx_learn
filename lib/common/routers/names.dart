@@ -13,4 +13,6 @@ class RouteNames {
   static const searchFilter = '/home/searchFilter';
   static const myMyAddress = '/mine/myMyAddress';
   static const cartBuyDone = '/cart/BuyDone';
+  static const orderList = '/my/orderlist';
+  static const orderDetail = '/my/orderDetail';
 }
