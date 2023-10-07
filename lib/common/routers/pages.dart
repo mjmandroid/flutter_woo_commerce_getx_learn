@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/cart/buy_done/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/category/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_details/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_list/index.dart';
@@ -74,5 +75,9 @@ class RouterPages {
       name: RouteNames.myMyAddress,
       page: () => MyAddressPage(),
     ),
+    GetPage(
+      name: RouteNames.cartBuyDone,
+      page: () => BuyDonePage(),
+    )
   ];
 }

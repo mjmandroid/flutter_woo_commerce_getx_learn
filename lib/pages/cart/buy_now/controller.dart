@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/api/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/models/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/models/woo/order_model/line_item.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/routers/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/services/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/utils/bottom_sheet.dart';
@@ -47,7 +48,25 @@ class BuyNowController extends GetxController {
   }
 
   // 下单 checkout
-  void onCheckout() async {}
+  void onCheckout() async {
+    // 商品 LineItem
+    List<LineItem> lineItems = [
+      LineItem(
+        productId: product.id,
+        quantity: quantity,
+      ),
+    ];
+    OrderModel res = await OrderApi.crateOrder(
+        lineItem: lineItems, lineCoupons: lineCoupons);
+    // 交易成功
+    if (res.id != null) {
+      // 提示
+      Loading.success("Order created.");
+
+      // goto 成功界面
+      Get.offNamed(RouteNames.cartBuyDone, arguments: res);
+    }
+  }
 
   void _initData() {
     shippingAddress = UserService.to.shipping;
