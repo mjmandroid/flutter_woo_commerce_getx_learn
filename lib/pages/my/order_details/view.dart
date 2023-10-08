@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/components/appbar.dart';
+import 'package:flutter_woo_commerce_getx_learn/common/components/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/extension/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/i18n/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/common/style/index.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 
 class OrderDetailPage extends GetView<OrderDetailController> {
   const OrderDetailPage({Key? key}) : super(key: key);
+
   // 标题
   Widget _buildTitle() {
     return <Widget>[
@@ -29,12 +31,88 @@ class OrderDetailPage extends GetView<OrderDetailController> {
 
   // 横向状态
   Widget _buildHorizontalStatus() {
-    return const Text("横向状态");
+    return <Widget>[
+      const StepHorizontalItemWidget(
+        statusName: 'Pending',
+        stepStatus: StepStatus.success,
+      ),
+      const StepHorizontalItemWidget(
+        statusName: "Confirmed",
+        stepStatus: StepStatus.success,
+      ),
+      const StepHorizontalItemWidget(
+        statusName: "Processing",
+        stepStatus: StepStatus.running,
+      ),
+      const StepHorizontalItemWidget(
+        statusName: "Picked",
+        stepStatus: StepStatus.none,
+      ),
+      const StepHorizontalItemWidget(
+        statusName: "Shipped",
+        stepStatus: StepStatus.none,
+      ),
+      const StepHorizontalItemWidget(
+        statusName: "Delivered",
+        stepStatus: StepStatus.none,
+      ),
+    ].toRow().padding(
+          bottom: AppSpace.listRow,
+          left: AppSpace.page,
+          right: AppSpace.page,
+        );
   }
 
   // 纵向状态
   Widget _buildVerticalStatus() {
-    return const Text("纵向状态");
+    return <Widget>[
+      const StepVerticalItemWidget(
+        statusName: "Delivered",
+        statusDateTime: "20 Jan, 2019",
+        statusDes:
+            "Lorem Ipsum is simply dumy text of printing and typesetting industry.",
+        stepStatus: StepStatus.none,
+      ),
+      const StepVerticalItemWidget(
+        statusName: "Shipped",
+        statusDateTime: "20 Jan, 2019",
+        statusDes:
+            "Lorem Ipsum is simply dumy text of printing and typesetting industry.",
+        stepStatus: StepStatus.none,
+      ),
+      const StepVerticalItemWidget(
+        statusName: "Picked",
+        statusDateTime: "20 Jan, 2019",
+        statusDes:
+            "Lorem Ipsum is simply dumy text of printing and typesetting industry.",
+        stepStatus: StepStatus.running,
+      ),
+      const StepVerticalItemWidget(
+        statusName: "Processing",
+        statusDateTime: "20 Jan, 2019",
+        statusDes:
+            "Lorem Ipsum is simply dumy text of printing and typesetting industry.",
+        stepStatus: StepStatus.success,
+      ),
+      const StepVerticalItemWidget(
+        statusName: "Confirm",
+        statusDateTime: "20 Jan, 2019",
+        statusDes:
+            "Lorem Ipsum is simply dumy text of printing and typesetting industry.",
+        stepStatus: StepStatus.success,
+      ),
+      const StepVerticalItemWidget(
+        statusName: "Pending",
+        statusDateTime: "20 Jan, 2019",
+        statusDes:
+            "Lorem Ipsum is simply dumy text of printing and typesetting industry.",
+        stepStatus: StepStatus.success,
+      ),
+    ].toColumn().padding(
+          bottom: AppSpace.listRow,
+          left: AppSpace.page,
+          right: AppSpace.page,
+        );
   }
 
   // 寄件地、目的地

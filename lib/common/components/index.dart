@@ -15,5 +15,6 @@ export 'quantity.dart';
 export 'refresher.dart';
 export 'slider_indicator.dart';
 export 'stars_list.dart';
+export 'steps.dart';
 export 'tags_list.dart';
 export 'welcome_slider.dart';
