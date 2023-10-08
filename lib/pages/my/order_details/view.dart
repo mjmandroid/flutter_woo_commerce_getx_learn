@@ -117,7 +117,29 @@ class OrderDetailPage extends GetView<OrderDetailController> {
 
   // 寄件地、目的地
   Widget _buildBillAddress() {
-    return const Text("寄件地、目的地");
+    return <Widget>[
+      BuildBillAddress(
+        title: LocaleKeys.orderDetailsBillFrom.tr,
+        address: "Adidas Shoes",
+        city: "Kingston",
+        state: "New York",
+        country: "United States",
+        phone: "+44-213 543 230",
+      ).expanded(),
+      // 间距
+      SizedBox(
+        width: AppSpace.iconTextMedium,
+      ),
+      // Bill To
+      BuildBillAddress(
+        title: LocaleKeys.orderDetailsBillTo.tr,
+        address: controller.order.shipping?.address1,
+        city: controller.order.shipping?.city,
+        state: controller.order.shipping?.state,
+        country: controller.order.shipping?.country,
+        phone: controller.order.billing?.phone,
+      ).expanded(),
+    ].toRow().paddingAll(AppSpace.card).card().paddingBottom(AppSpace.listRow);
   }
 
   // 商品列表
