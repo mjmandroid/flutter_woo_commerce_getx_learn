@@ -144,12 +144,64 @@ class OrderDetailPage extends GetView<OrderDetailController> {
 
   // 商品列表
   Widget _buildProductsList() {
-    return const Text("商品列表");
+    return BuildProductList(
+      lineItems: controller.order.lineItems ?? [],
+      currencySymbol: controller.order.currencySymbol,
+    ).paddingAll(AppSpace.card).card().paddingBottom(AppSpace.listRow);
   }
 
   // 小计
   Widget _buildTotal() {
-    return const Text("小计");
+    return <Widget>[
+      <Widget>[
+        // Payment Method
+        TextWidget.body1(LocaleKeys.orderDetailsPaymentMethod.tr),
+
+        // VISA Card Payment
+        const TextWidget.body2("VISA Card Payment"),
+        BuildTotalItem(
+          title: LocaleKeys.orderDetailsBalance.tr,
+          currencySymbol: controller.order.currencySymbol,
+          price: '0',
+        ),
+      ]
+          .toColumn(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+          )
+          .expanded(),
+      // 间距
+      SizedBox(
+        width: AppSpace.iconTextMedium,
+      ),
+      // 右侧
+      <Widget>[
+        // Total
+        BuildTotalItem(
+          title: LocaleKeys.orderDetailsTotal.tr,
+          currencySymbol: controller.order.currencySymbol,
+          price: controller.order.total,
+        ),
+
+        // Shipping
+        BuildTotalItem(
+          title: LocaleKeys.orderDetailsShipping.tr,
+          currencySymbol: controller.order.currencySymbol,
+          price: controller.order.shippingTotal,
+        ),
+
+        // Discount
+        BuildTotalItem(
+          title: LocaleKeys.orderDetailsDiscount.tr,
+          currencySymbol: controller.order.currencySymbol,
+          price: controller.order.discountTotal,
+        ),
+      ]
+          .toColumn(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          )
+          .expanded(),
+    ].toRow().height(100).paddingAll(AppSpace.card).card();
   }
 
   Widget _buildView() {
@@ -174,7 +226,7 @@ class OrderDetailPage extends GetView<OrderDetailController> {
         _buildTotal(),
 
         // 底部间距
-        const SizedBox(height: 100),
+        const SizedBox(height: 20),
       ].toColumn(),
     );
   }
