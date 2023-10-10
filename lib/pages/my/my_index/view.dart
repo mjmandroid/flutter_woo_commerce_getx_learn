@@ -33,7 +33,7 @@ class MyIndexPage extends GetView<MyIndexController> {
         title: LocaleKeys.myBtnEditProfile.tr,
         svgPath: AssetsSvgs.pCurrencySvg,
         color: "4971FF".toColor,
-        // onTap: () => Get.toNamed(RouteNames.myProfileEdit),
+        onTap: () => Get.toNamed(RouteNames.editProfile),
       ),
       // Billing Address
       ButtonItemWidget(

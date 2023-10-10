@@ -15,4 +15,5 @@ class RouteNames {
   static const cartBuyDone = '/cart/BuyDone';
   static const orderList = '/my/orderlist';
   static const orderDetail = '/my/orderDetail';
+  static const editProfile = '/my/editprofile';
 }

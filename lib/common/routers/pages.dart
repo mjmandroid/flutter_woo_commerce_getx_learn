@@ -6,6 +6,7 @@ import 'package:flutter_woo_commerce_getx_learn/pages/goods/product_list/index.d
 import 'package:flutter_woo_commerce_getx_learn/pages/my/my_address/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/my/order_details/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/my/order_list/index.dart';
+import 'package:flutter_woo_commerce_getx_learn/pages/my/profile_edit/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/search/search_filter/view.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/search/search_index/index.dart';
 import 'package:flutter_woo_commerce_getx_learn/pages/styles/styles_index/view.dart';
@@ -88,6 +89,10 @@ class RouterPages {
     GetPage(
       name: RouteNames.orderDetail,
       page: () => OrderDetailPage(),
+    ),
+    GetPage(
+      name: RouteNames.editProfile,
+      page: () => ProfileEditPage(),
     ),
   ];
 }
